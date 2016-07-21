@@ -363,7 +363,7 @@
 				}
 				else if ( realpath( $sCurrentFile ) )
 				{
-					include( $sCurrentFile );
+					include_once( $sCurrentFile );
 					$bImported = true;
 				}
 			}
