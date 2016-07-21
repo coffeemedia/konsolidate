@@ -341,7 +341,7 @@
 		 *  @type    method
 		 *  @access  public
 		 *  @param   string   filename
-		 *  @return  object
+		 *  @return  bool
 		 *  @syntax  Konsolidate->import( string file );
 		 */
 		public function import( $sFile )
@@ -356,17 +356,14 @@
 			$bImported = false;
 			foreach ( $aPath as $sPath )
 			{
-				$sCurrentFile = "{$sPath}/" . strToLower( $sFile );
-				if ( isset( $aIncluded[ $sCurrentFile ] ) )
-				{
-					$bImported = true;
-				}
-				else if ( realpath( $sCurrentFile ) )
+				$sCurrentFile = realpath("{$sPath}/" . strToLower( $sFile ));
+				if ( $sCurrentFile )
 				{
 					include_once( $sCurrentFile );
 					$bImported = true;
 				}
 			}
+
 			return $bImported;
 		}
 
